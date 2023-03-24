@@ -30,27 +30,28 @@ public class ProductDAOImpl implements ProductDAO{
   @Override
   public Long save(Product product){
     StringBuffer sb = new StringBuffer();
-    sb.append("insert into product(product_id,pname,quantity,price) ");
-    sb.append("values(product_product_id_seq.nextval, :pname, :quantity, :price) ");
+    sb.append("insert into product(pid,pname,quantity,price) ");
+    sb.append("values(pid_seq.nextval, :pname, :quantity, :price) ");
+//    sb.append("values(product_pid_seq.nextval, :pname, :quantity, :price) ");
 
     SqlParameterSource param = new BeanPropertySqlParameterSource(product);
     KeyHolder keyHolder = new GeneratedKeyHolder();
-    template.update(sb.toString(), param, keyHolder, new String[]{"product_id"});
+    template.update(sb.toString(), param, keyHolder, new String[]{"pid"});
 
-    long productId = keyHolder.getKey().longValue();
+    long pid = keyHolder.getKey().longValue();
 
-    return productId;
+    return pid;
   }
 
   @Override
-  public Optional<Product> findById(Long productId){
+  public Optional<Product> findById(Long pid){
     StringBuffer sb = new StringBuffer();
-    sb.append("select product_id, pname, quantity, price ");
+    sb.append("select pid, pname, quantity, price ");
     sb.append("  from product ");
-    sb.append(" where product_id = :id ");
+    sb.append(" where pid = :id ");
 
     try {
-      Map<String, Long> param = Map.of("id", productId);
+      Map<String, Long> param = Map.of("id", pid);
 
       Product product = template.queryForObject(
               sb.toString(), param, productRowMapper());
@@ -69,7 +70,7 @@ public class ProductDAOImpl implements ProductDAO{
     sb.append("   set pname = :pname, ");
     sb.append("       quantity = :quantity, ");
     sb.append("       price = :price ");
-    sb.append(" where product_id = :id ");
+    sb.append(" where pid = :id ");
 
     SqlParameterSource param = new MapSqlParameterSource()
             .addValue("pname",product.getPname())

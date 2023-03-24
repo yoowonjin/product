@@ -7,7 +7,7 @@ public interface ProductDAO {
 
   Long save(Product product);
 
-  Optional<Product> findById(Long productId);
+  Optional<Product> findById(Long pid);
 
   int update(Long pid, Product product);
 

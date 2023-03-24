@@ -6,13 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>상품수정</title>
-  <link rel="stylesheet" href="" th:href="@{/css/common.css}">
+  <link rel="stylesheet" href="">
 </head>
 <body>
 <div class="wrap">
   <h3>상품수정</h3>
   <div>
-    <form action="" method="post" th:object="${updateForm}">
+    <form action="#" th:action="@{/products/{id}/edit(id=${updateForm.pid})}" method="post" th:object="${updateForm}">
       <div>
         <label for="pid" >상품번호</label>
         <input type="text" name="pid" readonly th:field="*{pid}">
@@ -36,9 +36,9 @@
         <span class="field-error" th:errors="*{price}"></span>
       </div>
       <div>
-        <button type="submit" id="btnSave" th:text="#{button.update}">저장</button>
-        <button type="button" id="btnCancel" th:text="#{button.cancel}">취소</button>
-        <button type="button" id="btnFindAll" th:text="#{button.list}">목록</button>
+        <button type="submit" id="btnSave">저장</button>
+        <button type="button" id="btnCancel" >취소</button>
+        <button type="button" id="btnFindAll" >목록</button>
       </div>
     </form>
   </div>
@@ -110,7 +110,7 @@
     //전송
     frm.submit();
   }
-  btnSave.addEventListener('click',add_h,false);
+  btnSave.addEventListener('click',update_h,false);
 </script>
 </body>
 </html>
