@@ -12,27 +12,27 @@
 <div class="wrap">
   <h3>상품등록</h3>
   <div>
-    <form id="frm" action="" method="post">
+    <form id="frm" action="" method="post" th:object="${saveForm}">
       <div>
-        <p class="field-error"></p>
+        <p class="field-error" th:each="err:${#fields.globalErrors()}" th:text="${err}"></p>
       </div>
       <div>
-        <label for="pname">상품명</label>
+        <label for="pname" th:for="${#ids.next('pname')}">상품명</label>
         <input type="text" name="pname" minlength="2" maxlength="10" >
         <span class="field-error"></span>
-        <span class="field-error"></span>
+        <span class="field-error" th:errors="*{pname}"></span>
       </div>
       <div>
-        <label for="quantity">수량</label>
+        <label for="quantity" th:for="${#ids.next('quantity')}">수량</label>
         <input type="text" name="quantity" minlength="1" maxlength="10" >
         <span class="field-error"></span>
-        <span class="field-error"></span>
+        <span class="field-error" th:errors="*{quantity}"></span>
       </div>
       <div>
-        <label for="price">가격</label>
+        <label for="price" th:for="${#ids.next('price')}">가격</label>
         <input type="text" name="price" minlength="1" maxlength="10">
         <span class="field-error"></span>
-        <span class="field-error"></span>
+        <span class="field-error" th:errors="*{price}"></span>
       </div>
       <div>
         <button type="submit">등록</button>

@@ -12,7 +12,7 @@
 <div class="wrap">
   <h3>상품수정</h3>
   <div>
-    <form action="#" th:action="@{/products/{id}/edit(id=${updateForm.pid})}" method="post" th:object="${updateForm}">
+    <form action="#"  th:action="@{/products/{id}/edit(id=${updateForm.pid})}" method="post" th:object="${updateForm}">
       <div>
         <label for="pid" >상품번호</label>
         <input type="text" name="pid" readonly th:field="*{pid}">

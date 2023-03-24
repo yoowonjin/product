@@ -19,7 +19,7 @@ public class SaveForm {
 
   @NotNull
   @Positive //양수
-  @Min(10) //최소값
+  @Min(1000) //최소값
   //수량*가격 1억?
   private Long price;
 }
